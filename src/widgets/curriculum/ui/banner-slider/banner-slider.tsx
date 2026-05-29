@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
-import banner1 from '@/shared/assets/temp_banner/banner1.webp';
 import banner2 from '@/shared/assets/temp_banner/banner2.webp';
 import banner3 from '@/shared/assets/temp_banner/banner3.webp';
 import banner4 from '@/shared/assets/temp_banner/banner4.webp';
@@ -9,7 +8,7 @@ import banner5 from '@/shared/assets/temp_banner/banner5.webp';
 
 import * as styles from './banner-slider.css';
 
-const BANNERS = [banner1, banner2, banner3, banner4, banner5];
+const BANNERS = ['/banners/banner1.webp', banner2, banner3, banner4, banner5];
 const INTERVAL_MS = 3000;
 
 const BannerSlider = () => {
@@ -44,7 +43,16 @@ const BannerSlider = () => {
       <div className={styles.track} style={{ transform: `translateY(-${current * 33}rem)` }}>
         {BANNERS.map((src, i) => (
           <div key={i} className={styles.slide}>
-            <img src={src} alt={`배너 ${i + 1}`} className={styles.image} />
+            <img
+              src={src}
+              alt={`배너 ${i + 1}`}
+              className={styles.image}
+              loading={i === 0 ? 'eager' : 'lazy'}
+              fetchPriority={i === 0 ? 'high' : 'low'}
+              decoding={i === 0 ? 'sync' : 'async'}
+              width={1440}
+              height={330}
+            />
           </div>
         ))}
       </div>

@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 
 import HSpaceLogo from '@/shared/assets/icons/hspace_logo.svg?react';
-import InstagramIcon from '@/shared/assets/icons/ic_instagram.svg?react';
-import MediumIcon from '@/shared/assets/icons/ic_medium.svg?react';
-import SlideShareIcon from '@/shared/assets/icons/ic_slideshare.svg?react';
-import YouTubeIcon from '@/shared/assets/icons/ic_youtube.svg?react';
+import instagramIcon from '@/shared/assets/icons/ic_instagram.svg';
+import mediumIcon from '@/shared/assets/icons/ic_medium.svg';
+import slideshareIcon from '@/shared/assets/icons/ic_slideshare.svg';
+import youtubeIcon from '@/shared/assets/icons/ic_youtube.svg';
 
 import * as styles from './footer.css';
 
 const SNS_LINKS = [
-  { Icon: InstagramIcon, label: 'Instagram', href: 'https://www.instagram.com/boaz_bigdata' },
-  { Icon: YouTubeIcon, label: 'YouTube', href: 'https://www.youtube.com/@bigdataboaz4452' },
-  { Icon: MediumIcon, label: 'Medium', href: 'https://medium.com/@boaz.team.research' },
-  { Icon: SlideShareIcon, label: 'SlideShare', href: 'https://www.slideshare.net/BOAZbigdata' },
+  { iconSrc: instagramIcon, label: 'Instagram', href: 'https://www.instagram.com/boaz_bigdata' },
+  { iconSrc: youtubeIcon, label: 'YouTube', href: 'https://www.youtube.com/@bigdataboaz4452' },
+  { iconSrc: mediumIcon, label: 'Medium', href: 'https://medium.com/@boaz.team.research' },
+  { iconSrc: slideshareIcon, label: 'SlideShare', href: 'https://www.slideshare.net/BOAZbigdata' },
 ];
 
 const Footer = () => {
@@ -35,10 +35,10 @@ const Footer = () => {
             <small className={styles.email}>boaz.bigdata@gmail.com</small>
           </div>
           <ul className={styles.mobileSnsGrid}>
-            {SNS_LINKS.map(({ Icon, label, href }) => (
+            {SNS_LINKS.map(({ iconSrc, label, href }) => (
               <li key={label}>
                 <a className={styles.snsLink} href={href} target="_blank" rel="noopener noreferrer">
-                  <Icon width={16} height={16} />
+                  <img src={iconSrc} width={16} height={16} alt="" />
                   {label}
                 </a>
               </li>
@@ -60,10 +60,10 @@ const Footer = () => {
         <section className={styles.col.center}>
           <h4 className={styles.heading}>SNS</h4>
           <ul className={styles.snsLinks}>
-            {SNS_LINKS.map(({ Icon, label, href }) => (
+            {SNS_LINKS.map(({ iconSrc, label, href }) => (
               <li key={label}>
                 <a className={styles.snsLink} href={href} target="_blank" rel="noopener noreferrer">
-                  <Icon width={16} height={16} />
+                  <img src={iconSrc} width={16} height={16} alt="" />
                   {label}
                 </a>
               </li>
