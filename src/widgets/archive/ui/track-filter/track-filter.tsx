@@ -1,22 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
 import type { ArchiveTrack } from '@/shared/api/archive';
-import AnalyzeIcon from '@/shared/assets/icons/ic_analyze.svg?react';
-import EngineeringIcon from '@/shared/assets/icons/ic_engineering.svg?react';
+import analyzeIcon from '@/shared/assets/icons/ic_analyze.svg';
+import engineeringIcon from '@/shared/assets/icons/ic_engineering.svg';
 import ChevronUpIcon from '@/shared/assets/icons/ic_expand_more.svg?react';
 import ChevronDownIcon from '@/shared/assets/icons/ic_keyboard_arrow_up.svg?react';
-import VisualizationIcon from '@/shared/assets/icons/ic_visualization.svg?react';
+import visualizationIcon from '@/shared/assets/icons/ic_visualization.svg';
 
 import * as styles from './track-filter.css';
 
-type TrackIcon = React.ComponentType<React.SVGProps<SVGSVGElement>>;
-
-const TRACK_OPTIONS: { label: string; value: ArchiveTrack | undefined; Icon: TrackIcon | null }[] =
+const TRACK_OPTIONS: { label: string; value: ArchiveTrack | undefined; iconSrc: string | null }[] =
   [
-    { label: '전체', value: undefined, Icon: null },
-    { label: '분석', value: 'ANALYSIS', Icon: AnalyzeIcon },
-    { label: '시각화', value: 'VISUALIZATION', Icon: VisualizationIcon },
-    { label: '엔지니어링', value: 'ENGINEERING', Icon: EngineeringIcon },
+    { label: '전체', value: undefined, iconSrc: null },
+    { label: '분석', value: 'ANALYSIS', iconSrc: analyzeIcon },
+    { label: '시각화', value: 'VISUALIZATION', iconSrc: visualizationIcon },
+    { label: '엔지니어링', value: 'ENGINEERING', iconSrc: engineeringIcon },
   ];
 
 interface TrackFilterOverlayProps {
@@ -45,8 +43,14 @@ const TrackFilterOverlay = ({ value, onChange }: TrackFilterOverlayProps) => {
       {isOpen && <div className={styles.backdrop} onClick={() => setIsOpen(false)} />}
       <div className={styles.container} ref={ref}>
         <button type="button" className={styles.trigger} onClick={() => setIsOpen(!isOpen)}>
-          {selectedOption.Icon && (
-            <selectedOption.Icon width={28} height={28} className={styles.icon} />
+          {selectedOption.iconSrc && (
+            <img
+              src={selectedOption.iconSrc}
+              width={28}
+              height={28}
+              className={styles.icon}
+              alt=""
+            />
           )}
           <span>{selectedOption.label} 부문</span>
           {isOpen ? (
@@ -68,7 +72,9 @@ const TrackFilterOverlay = ({ value, onChange }: TrackFilterOverlayProps) => {
                   setIsOpen(false);
                 }}
               >
-                {opt.Icon ? <opt.Icon width={28} height={28} className={styles.icon} /> : null}
+                {opt.iconSrc ? (
+                  <img src={opt.iconSrc} width={28} height={28} className={styles.icon} alt="" />
+                ) : null}
                 {opt.label}
               </button>
             ))}

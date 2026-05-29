@@ -2,10 +2,10 @@ import { createBrowserRouter } from 'react-router';
 
 import { GlobalLayout } from '@/app/layouts/global-layout/global-layout';
 import AuthCallbackPage from '@/pages/auth-callback-page';
+import CurriculumPage from '@/pages/curriculum-page';
 import {
   ApplyPage,
   ArchivePage,
-  CurriculumPage,
   FAQPage,
   HomePage,
   PrivacyPage,
