@@ -1,4 +1,5 @@
-import { CurriculumPage, HomePage } from '@/shared/router/lazy';
+import CurriculumPage from '@/pages/curriculum-page';
+import { HomePage } from '@/shared/router/lazy';
 import { ROUTE_PATH } from '@/shared/router/paths';
 
 export const globalRoutes = [
